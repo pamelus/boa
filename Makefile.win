@@ -1,0 +1,32 @@
+# Project: Boa 1.0
+# Makefile created by Dev-C++ 4.9.8.5
+
+CPP  = g++.exe
+CC   = gcc.exe
+WINDRES = windres.exe
+RES  = Boa_10_private.res
+OBJ  = main.o $(RES)
+LINKOBJ  = main.o $(RES)
+LIBS =  -L"G:/Programy/Programowanie/Dev-Cpp/lib" -mwindows G:/Programy/Programowanie/Dev-Cpp/lib/libwinmm.a 
+INCS =  -I"G:/Programy/Programowanie/Dev-Cpp/include" 
+CXXINCS =  -I"G:/Programy/Programowanie/Dev-Cpp/include/c++"  -I"G:/Programy/Programowanie/Dev-Cpp/include/c++/mingw32"  -I"G:/Programy/Programowanie/Dev-Cpp/include/c++/backward"  -I"G:/Programy/Programowanie/Dev-Cpp/include" 
+BIN  = Boa_10.exe
+CXXFLAGS = $(CXXINCS) 
+CFLAGS = $(INCS) 
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before Boa_10.exe all-after
+
+
+clean: clean-custom
+	rm -f $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CPP) $(LINKOBJ) -o "Boa_10.exe" $(LIBS)
+
+main.o: main.cpp Definicje.h   G:/Programy/Programowanie/Dev-Cpp/include/windows.h Bledy.h   MainWindow.h
+	$(CPP) -c main.cpp -o main.o $(CXXFLAGS)
+
+Boa_10_private.res: Boa_10_private.rc 
+	$(WINDRES) -i Boa_10_private.rc -I rc -o Boa_10_private.res -O coff 
